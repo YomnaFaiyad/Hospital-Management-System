@@ -1,0 +1,129 @@
+CREATE DATABASE Hospital_Management_System;
+CREATE TABLE Patient (
+    PatientID int NOT NULL,
+    LastName varchar(255),
+    FirstName varchar(255),
+    PatientAddress varchar(255),
+    Diagnosis varchar(255),
+    RecordID varchar(255),
+    HospitalName varchar(255),
+    PRIMARY KEY (PatientID),
+    FOREIGN KEY (HospitalName) REFERENCES Hospital(HospitalName),
+    FOREIGN KEY (RecordID) REFERENCES Medical Record (RecordID)
+);
+
+INSERT INTO Patient (PatientID, LastName, FirstName, PatientAddress, Diagnosis, RecordID, HospitalName)
+VALUES (1, Smith, Elijah, 305 - 14th Ave. S. Suite 3B, Alzheimer’s Disease, 3, Newlife hospital);
+INSERT INTO Patient (PatientID, LastName, FirstName, PatientAddress, Diagnosis, RecordID, HospitalName)
+VALUES (2, Johnson, Emma, 3Keskuskatu 45, Chronic Pain, 6, Care & Cure Hospital);
+INSERT INTO Patient (PatientID, LastName, FirstName, PatientAddress, Diagnosis, RecordID, HospitalName)
+VALUES (3, Williams, Ava, ul. Filtrowa 68, Diabetes, 9, Medwin Cares);
+INSERT INTO Patient (PatientID, LastName, FirstName, PatientAddress, Diagnosis, RecordID, HospitalName)
+VALUES (4, Brown, Oliver, Skagen 21, Fibromyalgia, 1, Remedy plus care);
+INSERT INTO Patient (PatientID, LastName, FirstName, PatientAddress, Diagnosis, RecordID, HospitalName)
+VALUES (5, Jones, Charlotte, Obere Str. 57, Hypertension, 5, Flowerence);
+INSERT INTO Patient (PatientID, LastName, FirstName, PatientAddress, Diagnosis, RecordID, HospitalName)
+VALUES (6, Garcia, Alexander, Avda. de la Constitución 2222, IBS (Irritable Bowel Syndrome), 7, Rejuvenate);
+INSERT INTO Patient (PatientID, LastName, FirstName, PatientAddress, Diagnosis, RecordID, HospitalName)
+VALUES (7, Miller, Amelia, Mataderos 2312, Influenza, 10, Health Object Hospital);
+INSERT INTO Patient (PatientID, LastName, FirstName, PatientAddress, Diagnosis, RecordID, HospitalName)
+VALUES (8, Davis, William, 120 Hanover Sq., Kidney Failure, 2, Mankind Medicare);
+INSERT INTO Patient (PatientID, LastName, FirstName, PatientAddress, Diagnosis, RecordID, HospitalName)
+VALUES (9, Rodriguez, Sophia, Berguvsvägen 8, Leukemia, 4, Delight Sun CLinic);
+INSERT INTO Patient (PatientID, LastName, FirstName, PatientAddress, Diagnosis, RecordID, HospitalName)
+VALUES (10, Martinez, Evelyn, 35 King George, Osteoarthritis, 8, Ace hospital);
+
+CREATE TABLE Medical_Record (
+    PatientID int NOT NULL,
+    RecordID int NOT NULL,
+    Date_of_examination varchar(255),
+    Symptoms varchar(255),
+    PRIMARY KEY (RecordID),
+    FOREIGN KEY (PatientID) REFERENCES Patient (PatientID)
+);
+
+INSERT INTO Medical_Record (PatientID, RecordID, Date_of_examination, Symptoms)
+VALUES (1, 3, 2/8/2021, "Memory loss");
+INSERT INTO Medical_Record (PatientID, RecordID, Date_of_examination, Symptoms)
+VALUES (2, 6, 10/1/2021, "joint pain");
+INSERT INTO Medical_Record (PatientID, RecordID, Date_of_examination, Symptoms)
+VALUES (3, 9, 5/6/2021, "feeling very tired and losing weight without trying to");
+INSERT INTO Medical_Record (PatientID, RecordID, Date_of_examination, Symptoms)
+VALUES (4, 1, 15/2/2021, "Pain and stiffness all over the body");
+INSERT INTO Medical_Record (PatientID, RecordID, Date_of_examination, Symptoms)
+VALUES (5, 5, 23/12/2021, "Headaches and Shortness of breath");
+INSERT INTO Medical_Record (PatientID, RecordID, Date_of_examination, Symptoms)
+VALUES (6, 7, 12/4/2021, "Diarrhea");
+INSERT INTO Medical_Record (PatientID, RecordID, Date_of_examination, Symptoms)
+VALUES (7, 10, 8/11/2021, "fever");
+INSERT INTO Medical_Record (PatientID, RecordID, Date_of_examination, Symptoms)
+VALUES (8, 2, 30/5/2021, "Decreased urine output and confusion");
+INSERT INTO Medical_Record (PatientID, RecordID, Date_of_examination, Symptoms)
+VALUES (9, 4, 26/3/2021, "Swollen lymph nodes in the neck and Frequent infections");
+INSERT INTO Medical_Record (PatientID, RecordID, Date_of_examination, Symptoms)
+VALUES (10, 8, 20/9/2021, "Stiffness, Swelling, and Loss of flexibility");
+
+CREATE TABLE Hospital (
+    HospitalID int,
+    HospitalName varchar(255),
+    HospitalAddress varchar(255),
+    HospitalCity varchar(255),
+    PatientID int NOT NULL,
+    DoctorName varchar(255),
+    PRIMARY KEY (HospitalName),
+    FOREIGN KEY (DoctorName) REFERENCES Doctor(DoctorName),
+    FOREIGN KEY (PatientID) REFERENCES Patient(PatientID),
+);
+
+INSERT INTO Hospital (HospitalID, HospitalName, HospitalAddress, HospitalCity, PatientID, DoctorName)
+VALUES (1, "Remedy plus care", "Obere Str. 57", Germany, 4, Harper);
+INSERT INTO Hospital (HospitalID, HospitalName, HospitalAddress, HospitalCity, PatientID, DoctorName)
+VALUES (2, "Rejuvenate", "Mataderos 2312", Mexico, 6, Mason);
+INSERT INTO Hospital (HospitalID, HospitalName, HospitalAddress, HospitalCity, PatientID, DoctorName)
+VALUES (3, "Newlife hospital", "120 Hanover Sq."", UK, 1, Aiden);
+INSERT INTO Hospital (HospitalID, HospitalName, HospitalAddress, HospitalCity, PatientID, DoctorName)
+VALUES (4, "Mankind Medicare", "Berguvsvägen 8", Sweden, 8, Jack);
+INSERT INTO Hospital (HospitalID, HospitalName, HospitalAddress, HospitalCity, PatientID, DoctorName)
+VALUES (5, "Medwin Cares", "24 place Kléber", France, 3, Luna);
+INSERT INTO Hospital (HospitalID, HospitalName, HospitalAddress, HospitalCity, PatientID, DoctorName)
+VALUES (6, "Delight Sun CLinic", "C/ Araquil 67", Spain, 9, Aria);
+INSERT INTO Hospital (HospitalID, HospitalName, HospitalAddress, HospitalCity, PatientID, DoctorName)
+VALUES (7, "Care & Cure Hospital", "23 Tsawassen Blvd."", Canada, 2, Ethan);
+INSERT INTO Hospital (HospitalID, HospitalName, HospitalAddress, HospitalCity, PatientID, DoctorName)
+VALUES (8, "Ace hospital", "Cerrito 333", Argentina, 10, Mila);
+INSERT INTO Hospital (HospitalID, HospitalName, HospitalAddress, HospitalCity, PatientID, DoctorName)
+VALUES (9, "Flowerence", "Hauptstr. 29", Switzerland, 5, Daniel);
+INSERT INTO Hospital (HospitalID, HospitalName, HospitalAddress, HospitalCity, PatientID, DoctorName)
+VALUES (10, "Health Object Hospital", "Av. dos Lusíadas, 23", Brazil, 7, Camila);
+
+CREATE TABLE Doctor (
+    DoctorID int,
+    DoctorName varchar(255),
+    Salary($) varchar(255),
+    Qualification varchar(255),
+    HospitalName varchar(255),
+    PRIMARY KEY (DoctorName),
+    FOREIGN KEY (HospitalName) REFERENCES Hospital (Hospital Name)
+);
+
+INSERT INTO Doctor (DoctorID, DoctorName, Salary($), Qualification, HospitalName)
+VALUES (1, Daniel, "$321,689", "License and Diploma", "Flowerence");
+INSERT INTO Doctor (DoctorID, DoctorName, Salary($), Qualification, HospitalName)
+VALUES (2, Aria, "$87,212", "Diploma", "Delight Sun CLinic");
+INSERT INTO Doctor (DoctorID, DoctorName, Salary($), Qualification, HospitalName)
+VALUES (3, Camila, "$3,883", "License and Diploma", "Health Object Hospital");
+INSERT INTO Doctor (DoctorID, DoctorName, Salary($), Qualification, HospitalName)
+VALUES (4, Ethan, "$54,005", "Diploma", "Care & Cure Hospital");
+INSERT INTO Doctor (DoctorID, DoctorName, Salary($), Qualification, HospitalName)
+VALUES (5, Mason, "$64,499", "License and Diploma", "Rejuvenate");
+INSERT INTO Doctor (DoctorID, DoctorName, Salary($), Qualification, HospitalName)
+VALUES (6, Mila, "$1,094", “Diploma", "Ace hospital");
+INSERT INTO Doctor (DoctorID, DoctorName, Salary($), Qualification, HospitalName)
+VALUES (7, Aiden, "$7,037", "License and Diploma", "Newlife hospital");
+INSERT INTO Doctor (DoctorID, DoctorName, Salary($), Qualification, HospitalName)
+VALUES (8, Jack, "$147,925", "Diploma", "Mankind Medicare");
+INSERT INTO Doctor (DoctorID, DoctorName, Salary($), Qualification, HospitalName)
+VALUES (9, Luna, "$137,828", "License and Diploma", "Medwin Cares");
+INSERT INTO Doctor (DoctorID, DoctorName, Salary($), Qualification, HospitalName)
+VALUES (10, Harper, "$95,043", "Diploma", "Remedy plus care");
+
